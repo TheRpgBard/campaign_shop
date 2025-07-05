@@ -1,0 +1,99 @@
+  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
+  header { background-color: #232f3e; color: white; padding: 1em; text-align: center; }
+  header h1 { margin: 0 0 0.5em 0; }
+  .nav-buttons { margin-top: 0.5em; }
+  .nav-buttons button {
+    margin: 0 0.3em; padding: 0.5em 1em;
+    border: none; background: #37475a; color: white; cursor: pointer; border-radius: 4px;
+    transition: background 0.3s;
+  }
+  .nav-buttons button:hover { background: #485769; }
+  #user-info, #cart-summary { margin-top: 0.2em; }
+  #cart-summary button { background: #febd69; border: none; padding: 0.3em 0.7em; border-radius: 4px; cursor: pointer; }
+  #cart-summary button:hover { background: #f3a847; }
+  .container { padding: 1em; max-width: 1000px; margin: auto; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+  section { display: none; margin-top: 1em; }
+  .sub-nav button { margin-right: 0.5em; }
+  .admin-subsection { display: none; margin-top: 1em; }
+  .card {
+    border: 1px solid #ccc; padding: 1em; margin: 1em 0; border-radius: 4px; box-shadow: 1px 1px 6px #ddd;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    margin-top: 1em;
+  }
+  th, td {
+    border: 1px solid #ddd;
+    padding: 0.6em;
+    text-align: left;
+  }
+  th {
+    background: #232f3e;
+    color: white;
+  }
+  input[type=text], input[type=number] {
+    padding: 0.4em;
+    margin: 0.2em 0.5em 0.2em 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  button.action-btn {
+    padding: 0.3em 0.7em;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  button.edit-btn { background: #1a73e8; color: white; }
+  button.delete-btn { background: #d93025; color: white; }
+  button.delete-btn:hover { background: #a9221b; }
+  button.edit-btn { background: #256fe6; color: white; }
+  button.edit-btn:hover { background: #0f54c1; }
+  button.save-btn { background: #34a853; color: white; }
+  button.save-btn:hover { background: #2c8e45; }
+  button.cancel-btn { background: #e3742f; color: white; }
+  button.cancel-btn:hover { background: #b86223; }
+  /* Cards for Store */
+  #product-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1em;
+  }
+  .card {
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 1em;
+    width: 200px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .card img {
+    max-width: 100%;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 0.5em;
+  }
+  .card h3 {
+    margin: 0 0 0.3em 0;
+    font-size: 1.1em;
+  }
+  .card p {
+    flex-grow: 1;
+    font-size: 0.9em;
+    margin: 0 0 0.5em 0;
+  }
+  .card button {
+    background: #febd69;
+    border: none;
+    padding: 0.4em 0.8em;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+  }
+  .card button:hover {
+    background: #f3a847;
+  }

@@ -4,651 +4,389 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Shopping Website</title>
-<style>
-  body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #f9f9f9; }
-  header { background-color: #232f3e; color: white; padding: 1em; text-align: center; }
-  header h1 { margin: 0 0 0.5em 0; }
-  .nav-buttons { margin-top: 0.5em; }
-  .nav-buttons button {
-    margin: 0 0.3em; padding: 0.5em 1em;
-    border: none; background: #37475a; color: white; cursor: pointer; border-radius: 4px;
-    transition: background 0.3s;
-  }
-  .nav-buttons button:hover { background: #485769; }
-  #user-info, #cart-summary { margin-top: 0.2em; }
-  #cart-summary button { background: #febd69; border: none; padding: 0.3em 0.7em; border-radius: 4px; cursor: pointer; }
-  #cart-summary button:hover { background: #f3a847; }
+<link rel="stylesheet" href="css\style.css">
+<script src="js\functions.js"></script>
+<script src="js\db.js"></script>
+<script src="js\layout.js"></script>
+<script src="js\shop.js"></script>
+<script>
+// === PRODUCT MANAGEMENT ===
 
-  .container { padding: 1em; max-width: 1000px; margin: auto; background: white; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+// === STORE (SHOP) ===
 
-  section { display: none; margin-top: 1em; }
+function renderStoreProducts() {
+  const container = document.getElementById('product-list');
+  container.innerHTML = '';
+  if (!products.length) {
+    container.textContent = 'No products available';
+    return;
+  }
+  products.forEach(p => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML = `
+      <img src="${p.url || 'https://via.placeholder.com/150?text=No+Image'}" alt="${p.name}" />
+      <h3>${p.name}</h3>
+      <p>${p.description}</p>
+      <p><strong>${Number(p.price).toFixed(2)}</strong></p>
+      <button onclick="addToCart('${p.name}', ${p.price})">Add to Cart</button>
+    `;
+    container.appendChild(card);
+  });
+}
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-    margin-top: 1em;
-  }
-  th, td {
-    border: 1px solid #ddd;
-    padding: 0.6em;
-    text-align: left;
-  }
-  th { background: #232f3e; color: white; }
+function showAdminSub(sub) {
+  document.querySelectorAll('.admin-subsection').forEach(s => s.style.display = 'none');
+  document.getElementById('admin-' + sub).style.display = 'block';
+}
 
-  input[type=text], input[type=number], select, textarea {
-    padding: 0.4em;
-    margin: 0.2em 0.5em 0.2em 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
+function addCampaign() {
+  const name = document.getElementById('campaign-name').value.trim();
+  const owner = document.getElementById('campaign-owner').value.trim();
+  if (!name) return alert('Please enter a campaign name.');
+  const id = generateId();
+  const tbody = document.querySelector('#campaigns-table tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${id}</td>
+    <td>${name}</td>
+    <td>${owner}</td>
+    <td><button onclick="setItems(this)" class="action-btn edit-btn">Edit</button>
+      <button onclick="setItems(this)" class="action-btn delete-btn">Delete</button></td>`;
+  tbody.appendChild(tr);
 
-  button.action-btn {
-    padding: 0.3em 0.7em;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  button.edit-btn { background: #1a73e8; color: white; }
-  button.delete-btn { background: #d93025; color: white; }
-  button.edit-btn:hover { background: #0f54c1; }
-  button.delete-btn:hover { background: #a9221b; }
-  button.save-btn { background: #34a853; color: white; }
-  button.save-btn:hover { background: #2c8e45; }
-  button.cancel-btn { background: #e3742f; color: white; }
-  button.cancel-btn:hover { background: #b86223; }
+  const bulkArray = JSON.parse(`[{"id":"${id}"
+                , "name":"${name}"
+                , "owner":"${owner}"
+              }]`);
+  addToDb('campaigns', bulkArray);
+  document.getElementById('campaign-name').value = '';
+}
 
-  /* Cards for Store */
-  #product-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1em;
-  }
-  .card {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 1em;
-    width: 200px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  .card img {
-    max-width: 100%;
-    height: 120px;
-    object-fit: contain;
-    margin-bottom: 0.5em;
-  }
-  .card h3 {
-    margin: 0 0 0.3em 0;
-    font-size: 1.1em;
-  }
-  .card p {
-    flex-grow: 1;
-    font-size: 0.9em;
-    margin: 0 0 0.5em 0;
-  }
-  .card button {
-    background: #febd69;
-    border: none;
-    padding: 0.4em 0.8em;
-    border-radius: 4px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: background 0.3s;
-  }
-  .card button:hover {
-    background: #f3a847;
-  }
+function addStore() {
+  const name = document.getElementById('store-name').value.trim();
+  const owner = document.getElementById('store-owner').value.trim();
+  const campaign = document.getElementById('store-campaign').value.trim();
+  if (!name) return alert('Please enter a store name.');
+  const id = generateId();
 
-  /* Checkout list */
-  #checkout-list {
-    margin-top: 1em;
-  }
-  #checkout-list div {
-    border-bottom: 1px solid #ddd;
-    padding: 0.5em 0;
-  }
+  const bulkArray = JSON.parse(`[{"id":"${id}"
+                , "name":"${name}"
+                , "owner":"${owner}"
+                , "campaign":"${campaign}"
+              }]`);
+  addToDb('stores', bulkArray);
+  document.getElementById('store-name').value = '';
+  document.getElementById('store-owner').value = '';
+  document.getElementById('store-campaign').value = '';
+}
 
-</style>
+function addUser() {
+  const name = document.getElementById('new-username').value.trim();
+  const balance = Number(parseFloat(document.getElementById('new-balance').value));
+  const currency = document.getElementById('new-currency').value;
+  const campaign = document.getElementById('new-campaign').value.trim();
+  const id = generateId();
+  if (!name || isNaN(balance)) return alert("Invalid user input");
+  const tbody = document.querySelector('#users-table tbody');
+  const tr = document.createElement('tr');
+  tr.innerHTML = `<td>${id}</td>
+    <td>${name}</td>
+    <td>${balance.toFixed(2)}</td>
+    <td>${currency}</td>
+    <td>${campaign}</td>
+    <td><button onclick="selectUser('${id}', '${name}', ${balance.toFixed(2)}, '${currency}','${campaign}')">Select</button>
+      <button onclick="setItems(this)" class="action-btn edit-btn">Edit</button>
+      <button onclick="setItems(this)" class="action-btn delete-btn">Delete</button></td>`;
+  tbody.appendChild(tr);
+  const bulkArray = JSON.parse(`[{"id":"${id}"
+                , "name":"${name}"
+                , "balance":${balance.toFixed(2)}
+                , "currency":"${currency}"
+                , "campaign":"${campaign}"
+              }]`);
+  addToDb('users', bulkArray);
+  document.getElementById('add-user-form').reset();
+}
+
+function selectUser(dbName, id, name, balance, currency, campaign) {
+  currentUser = { id, name, balance, currency, campaign };
+  document.getElementById('user-info').innerText = `${name} — ${currency}${Number(balance).toFixed(2)}`;
+  cart = [];
+  updateCartSummary();
+  showSection('shop');
+}
+function selectCampaign(dbName, id, name) {
+  currentCampaign = { id, name };
+
+  clearCart();
+  if (currentCampaign !== null) { filter = 'campaign', value = currentCampaign; }
+  loadDbVals('stores', 'campaign', currentCampaign.id);
+  loadDbVals('users', 'campaign', currentCampaign.id);
+}
+function selectStore(dbName, id, name, balance, currency, campaign) {
+  currentStore = { id, name };
+  document.getElementById('store').innerText = `${currentStore.name}`;  
+  clearCart();
+
+  let arr = getSelectItems('stores', 'campaign', currentStore.id).then(items => {
+    cart = [];
+    updateCartSummary();
+    showSection('shop');
+  })
+  .catch(err => console.error("Failed to get items", err));
+}
+
+function renderStore() {
+  const shopSection = document.querySelector('.shop');
+  shopSection.innerHTML = '<h2>Products</h2>';
+  if (!products.length) {
+    shopSection.innerHTML += '<p>No products available</p>';
+    return;
+  }
+  products.forEach(prod => {
+    const div = document.createElement('div');
+    div.className = 'card';
+    div.innerHTML = `<strong>${prod.name}</strong><br>
+                      $${prod.price.toFixed(2)}<br>
+                      <button onclick="addToCart('${prod.name}', ${prod.price})">Add to Cart</button>`;
+    shopSection.appendChild(div);
+  });
+}
+
+// PRODUCTS ADMIN MANAGEMENT
+
+function renderProductsTable() {
+  const tbody = document.querySelector('#products-table tbody');
+  tbody.innerHTML = '';
+  products.forEach((p, i) => {
+    const tr = document.createElement('tr');
+    tr.dataset.index = i;
+    tr.innerHTML = `
+      <td>${p.id}</td>
+      <td>${p.name}</td>
+      <td>${p.description}</td>
+      <td>${p.category}</td>
+      <td>${p.frequency || ''}</td>
+      <td>${Number(p.price).toFixed(2)}</td>
+      <td>${p.store}</td>
+      <td>${p.url}</td>
+      <td>
+        <button onclick="setItems(this)" class="action-btn edit-btn">Edit</button>
+        <button onclick="setItems(this)" class="action-btn delete-btn">Delete</button>
+      </td>
+    `;
+    tbody.appendChild(tr);
+  });
+}
+
+function saveProduct(index, id, name, description, category, frequency, price, store, bulk) {
+  if (index === '') {
+    // Add new product
+    products.push({ id, name, description, category, frequency, price, store });
+  } else {
+    // Edit existing product
+    products[index] = { generateId, name, description, category, frequency, price, store };
+  }
+  bulkArray = JSON.parse(`[{"name":"${name}"
+                , "description":"${description}"
+                , "category":"${category}"
+                , "frequency":"${frequency}"
+                , "price":"${price}""
+                , "store":"${store}"
+                , "url":""
+              }]`);
+  addToDb('products', bulkArray);
+  renderProductsTable();
+  //cancelEditProduct();
+}
+function setProduct(){
+  const name = document.getElementById('prod-name').value.trim();
+  const description = document.getElementById('prod-desc').value.trim();
+  const category = document.getElementById('prod-cat').value.trim();
+  const frequency = document.getElementById('prod-freq').value.trim();
+  const priceRaw = document.getElementById('prod-price').value.trim();
+  const price = parseFloat(priceRaw);
+  const store = document.getElementById('prod-store').value.trim();
+  const index = document.getElementById('product-index').value;
+  const bulk = document.getElementById('bulk-input').value;
+
+  if ((!name || !description || !category || isNaN(price) || price < 0) && !bulk) {
+    alert('Please fill in valid product details.');
+    return;
+  }
+  if (bulk !== '') {
+    addBulkProducts();
+  } else {
+    const id = generateId();
+    saveProduct(index, id, name, description, category, frequency, price, store, bulk);
+  }
+}
+// Bulk add products from JSON textarea
+function addBulkProducts() {
+  const bulkText = document.getElementById('bulk-input').value.trim();
+  if (!bulkText) return alert('Enter JSON array of products');
+  let bulkArray;
+  try {
+    bulkArray = JSON.parse(bulkText);
+  } catch {
+    return alert('Invalid JSON');
+  }
+  if (!Array.isArray(bulkArray)) return alert('JSON must be an array');
+  addToDb('products',bulkArray);
+}
+function deleteProduct(index) {
+  if (!confirm('Delete this product?')) return;
+  products.splice(index, 1);
+  renderProductsTable();
+}
+
+// Update user row after purchase
+function updateUserRow(id, name, balance, currency, campaign) {
+  const rows = document.querySelectorAll('#users-table tbody tr');
+  rows.forEach(row => {
+    if (row.children[0].innerText === id) {
+      row.children[2].innerText = balance.toFixed(2);
+    }
+  });
+}
+
+// Initialization: show profile on load
+window.onload = () => {
+  //showSection('profile');
+  showAdminSub('products');
+  renderProductsTable();
+};
+</script>
 </head>
 <body>
 <header>
-  <h1>My Shop</h1>
-  <div id="user-info">No Profile Selected</div>
+  <h1 id="store" onclick="showSection('admin');showAdminSub('stores')">No Shop Selected <button id="btnStore">Stores</button></h1>
+  <div id="user-info" onclick="showSection('admin');showAdminSub('profile')">No Profile Selected <button id="btnStore" onclick="showSection('admin');showAdminSub('profile')">Profile</button></div>
   <div id="cart-summary">Cart: 0 items - $0.00 <button onclick="showSection('checkout')">Checkout</button></div>
   <div class="nav-buttons">
-    <button onclick="showSection('profile')">Profile</button>
     <button onclick="showSection('admin')">Admin</button>
     <button onclick="showSection('shop')">Store</button>
     <button onclick="showSection('cart')">Cart</button>
   </div>
 </header>
-
 <div class="container">
-
-  <!-- Profile Section -->
-  <section class="profile">
-    <h2>User Profiles</h2>
-    <table id="users-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Balance</th>
-          <th>Currency</th>
-          <th>Select</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Users inserted here -->
-      </tbody>
-    </table>
-
-    <h3>Add New User</h3>
-    <form id="add-user-form" onsubmit="event.preventDefault(); addUser();">
-      <input type="text" id="new-username" placeholder="Name" required />
-      <input type="number" id="new-balance" placeholder="Balance" required step="0.01" min="0" />
-      <select id="new-currency" required>
-        <option value="$">$ USD</option>
-        <option value="€">€ EUR</option>
-        <option value="£">£ GBP</option>
-        <option value="¥">¥ JPY</option>
-      </select>
-      <button type="submit" class="action-btn save-btn">Add User</button>
-    </form>
-  </section>
-
-  <!-- Admin Section -->
   <section class="admin">
-    <h2>Admin Area - Products</h2>
+    <h2>Admin Area</h2>
+    <div class="sub-nav">
+      <button onclick="showAdminSub('profile')">Profiles</button>
+      <button onclick="showAdminSub('products')">Products</button>
+      <button onclick="showAdminSub('campaigns')">Campaigns</button>
+      <button onclick="showAdminSub('stores')">Stores</button>
+    </div>
+    <div class="admin-subsection" id="admin-profile">
+      <h2>User Profiles</h2>
+      <table id="users-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Balance</th>
+            <th>Currency</th>
+            <th>Campaign</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <h3>Add New User</h3>
+      <form id="add-user-form" onsubmit="event.preventDefault(); addUser();">
+        <input type="text" id="new-username" placeholder="Name" required />
+        <input type="number" id="new-balance" placeholder="Balance" required step="0.01" min="0" />
+        <select id="new-currency" required>
+          <option value="&#129689;">&#129689; GP</option>
+          <option value="$">$ USD</option>
+          <option value="€">€ EUR</option>
+          <option value="£">£ GBP</option>
+          <option value="¥">¥ JPY</option>
+        </select>
+        <input type="text" id="new-campaign" placeholder="campaign" required />
+        <button type="submit" class="action-btn save-btn">Add User</button>
+      </form>
+    </div>
 
-    <table id="products-table">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Category</th>
-          <th>Frequency</th>
-          <th>Price</th>
-          <th>URL</th>
-          <th>Edit</th>
-          <th>Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Products rows inserted here -->
-      </tbody>
-    </table>
+    <div class="admin-subsection" id="admin-products">
+      <h3>Product Management</h3>
+      <table id="products-table">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Frequency</th>
+            <th>Price</th>
+            <th>Store ID</th>
+            <th>Url</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filled dynamically -->
+        </tbody>
+      </table>
+      <h4 id="product-form-title">Add / Edit Product</h4>
+      <form id="product-form" onsubmit="event.preventDefault(); setProduct();">
+        <input type="hidden" id="product-index" value="" />
+        <input type="text" id="prod-name" placeholder="Product Name" />
+        <input type="text" id="prod-desc" placeholder="Description" />
+        <input type="text" id="prod-cat" placeholder="Category" />
+        <input type="text" id="prod-freq" placeholder="Frequency (optional)" />
+        <input type="number" id="prod-price" placeholder="Price" step="0.01" min="0" />
+        <input type="text" id="prod-store" placeholder="Store ID" />
+        <button type="submit" id="product-save-btn" class="action-btn save-btn">Add Product</button>
+        <button type="button" id="product-cancel-btn" class="action-btn cancel-btn" onclick="cancelEditProduct()" style="display:none;">Cancel</button>
+        <h3>Bulk Add Products (JSON array)</h3>
+        <textarea id="bulk-input" rows="5" style="width:100%" placeholder='[{"name":"Prod1","description":"Desc","category":"Cat","frequency":"Freq","price":10,"store":"","url":"https://..."}]'></textarea>
+        <button type="submit" class="action-btn save-btn">Add Bulk Products</button>
+      </form>
+    </div>
 
-    <h3>Add / Edit Product</h3>
-    <form id="product-form" onsubmit="event.preventDefault(); saveProduct();">
-      <input type="text" id="prod-name" placeholder="Name" required />
-      <input type="text" id="prod-desc" placeholder="Description" required />
-      <input type="text" id="prod-cat" placeholder="Category" required />
-      <input type="text" id="prod-freq" placeholder="Frequency" />
-      <input type="number" id="prod-price" placeholder="Price" required step="0.01" min="0" />
-      <input type="text" id="prod-url" placeholder="Image URL" />
-      <input type="hidden" id="prod-original-name" />
-      <button type="submit" class="action-btn save-btn" id="product-save-btn">Add Product</button>
-      <button type="button" class="action-btn cancel-btn" id="product-cancel-btn" style="display:none;" onclick="cancelEditProduct()">Cancel</button>
-    </form>
+    <div class="admin-subsection" id="admin-campaigns">
+      <h3>Campaigns</h3>
+      <table id="campaigns-table">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Owner ID</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <h4>Add Campaign</h4>
+      <form onsubmit="event.preventDefault(); addCampaign();">
+        <input type="text" id="campaign-name" placeholder="Campaign Name" required />
+        <input type="text" id="campaign-owner" placeholder="Owner ID" required />
+        <button type="submit" class="action-btn save-btn">Add Campaign</button>
+      </form>
+    </div>
 
-    <h3>Bulk Add Products (JSON array)</h3>
-    <textarea id="bulk-input" rows="5" style="width:100%" placeholder='[{"name":"Prod1","description":"Desc","category":"Cat","frequency":"Freq","price":10,"url":"https://..."}]'></textarea>
-    <button class="action-btn save-btn" onclick="addBulkProducts()">Add Bulk Products</button>
+    <div class="admin-subsection" id="admin-stores">
+      <h3>Stores</h3>
+      <table id="stores-table">
+        <thead>
+          <tr><th>ID</th><th>Name</th><th>Owner ID</th><th>Campaign ID</th><th>Actions</th></tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <h4>Add Store</h4>
+      <form onsubmit="event.preventDefault(); addStore();">
+        <input type="text" id="store-name" placeholder="Store Name" required />
+        <input type="text" id="store-owner" placeholder="Owner ID" required />
+        <input type="text" id="store-campaign" placeholder="Campaign ID" required />
+        <button type="submit" class="action-btn save-btn">Add Store</button>
+      </form>
+    </div>
   </section>
 
-  <!-- Store Section -->
+<!-- Store Section -->
   <section class="shop">
     <h2>Store</h2>
     <div id="product-list"></div>
   </section>
-
-  <!-- Cart Section -->
-  <section class="cart">
-    <h2>Shopping Cart</h2>
-    <div id="cart-items"></div>
-    <div id="cart-subtotal"></div>
-    <button onclick="showSection('checkout')" class="action-btn save-btn" style="margin-top:1em;">Checkout</button>
-  </section>
-
-  <!-- Checkout Section -->
-  <section class="checkout">
-    <h2>Checkout</h2>
-    <div id="checkout-message"></div>
-    <div id="checkout-list"></div>
-    <button onclick="completeCheckout()" class="action-btn save-btn" style="margin-top:1em;">Complete Purchase</button>
-  </section>
-
+  <section class="cart"></section>
+  <section class="checkout"></section>
 </div>
-
-<script>
-  // Show section helper
-  function showSection(section) {
-    document.querySelectorAll('.profile, .admin, .shop, .cart, .checkout').forEach(s => s.style.display = 'none');
-    document.querySelector('.' + section).style.display = 'block';
-  }
-
-  // IndexedDB setup
-  let db, user = null;
-  let products = [];
-  let cart = [];
-
-  const request = indexedDB.open('ShopDB', 1);
-  request.onupgradeneeded = e => {
-    db = e.target.result;
-    if (!db.objectStoreNames.contains('users')) {
-      db.createObjectStore('users', { keyPath: 'name' });
-    }
-    if (!db.objectStoreNames.contains('products')) {
-      db.createObjectStore('products', { keyPath: 'name' });
-    }
-  };
-  request.onsuccess = e => {
-    db = e.target.result;
-    loadUsers();
-    loadProducts();
-    showSection('profile'); // default to profile on load
-  };
-
-  // === USER MANAGEMENT ===
-
-  function loadUsers() {
-    const tx = db.transaction('users', 'readonly');
-    const store = tx.objectStore('users');
-    const request = store.getAll();
-
-    request.onsuccess = () => {
-      const users = request.result;
-      const tbody = document.querySelector('#users-table tbody');
-      tbody.innerHTML = '';
-      users.forEach(u => {
-        const tr = document.createElement('tr');
-        tr.innerHTML = `
-          <td contenteditable="true" data-field="name">${u.name}</td>
-          <td contenteditable="true" data-field="balance">${u.balance.toFixed(2)}</td>
-          <td>
-            <select data-field="currency">
-              <option value="$" ${u.currency === '$' ? 'selected' : ''}>$ USD</option>
-              <option value="€" ${u.currency === '€' ? 'selected' : ''}>€ EUR</option>
-              <option value="£" ${u.currency === '£' ? 'selected' : ''}>£ GBP</option>
-              <option value="¥" ${u.currency === '¥' ? 'selected' : ''}>¥ JPY</option>
-            </select>
-          </td>
-          <td><button class="action-btn save-btn">Select</button></td>
-          <td><button class="action-btn delete-btn">Delete</button></td>
-        `;
-
-        // Save changes on blur for contenteditable fields
-        ['td[data-field="name"]','td[data-field="balance"]'].forEach(selector => {
-          tr.querySelector(selector).addEventListener('blur', e => updateUserRow(tr));
-        });
-        tr.querySelector('select[data-field="currency"]').addEventListener('change', e => updateUserRow(tr));
-
-        // Select user button
-        tr.querySelector('button.save-btn').onclick = () => {
-          const name = tr.querySelector('td[data-field="name"]').textContent.trim();
-          selectUser(name);
-        };
-        // Delete user button
-        tr.querySelector('button.delete-btn').onclick = () => {
-          const name = tr.querySelector('td[data-field="name"]').textContent.trim();
-          deleteUser(name);
-        };
-
-        tbody.appendChild(tr);
-      });
-    };
-  }
-
-  // Add new user from form
-  function addUser() {
-    const name = document.getElementById('new-username').value.trim();
-    const balanceRaw = document.getElementById('new-balance').value.trim();
-    const balance = parseFloat(balanceRaw);
-    const currency = document.getElementById('new-currency').value;
-
-    if (!name || isNaN(balance) || balance < 0) {
-      alert('Please enter valid name and balance.');
-      return;
-    }
-
-    // Check for duplicate user name
-    const tx = db.transaction('users', 'readonly');
-    const store = tx.objectStore('users');
-    const getRequest = store.get(name);
-    getRequest.onsuccess = () => {
-      if (getRequest.result) {
-        alert('User name already exists!');
-      } else {
-        const newUser = { name, balance, currency };
-        const tx2 = db.transaction('users', 'readwrite');
-        tx2.objectStore('users').add(newUser).onsuccess = () => {
-          loadUsers();
-          // Clear form
-          document.getElementById('add-user-form').reset();
-        };
-      }
-    };
-  }
-
-  // Update user inline edit row
-  function updateUserRow(tr) {
-    const nameCell = tr.querySelector('td[data-field="name"]');
-    const balanceCell = tr.querySelector('td[data-field="balance"]');
-    const currencySelect = tr.querySelector('select[data-field="currency"]');
-
-    let name = nameCell.textContent.trim();
-    let balanceRaw = balanceCell.textContent.trim();
-    let balance = parseFloat(balanceRaw);
-    const currency = currencySelect.value;
-
-    if (!name || isNaN(balance) || balance < 0) {
-      alert('Invalid user data. Changes not saved.');
-      loadUsers();
-      return;
-    }
-
-    // Save update to IndexedDB
-    const tx = db.transaction('users', 'readwrite');
-    tx.objectStore('users').put({ name, balance, currency }).onsuccess = () => {
-      if (user && user.name === name) {
-        user.balance = balance;
-        user.currency = currency;
-        updateUserInfoDisplay();
-      }
-    };
-  }
-
-  // Delete user by name
-  function deleteUser(name) {
-    if (user && user.name === name) {
-      user = null;
-      updateUserInfoDisplay();
-      clearCart();
-    }
-    const tx = db.transaction('users', 'readwrite');
-    tx.objectStore('users').delete(name).onsuccess = () => loadUsers();
-  }
-
-  // Select user as current active profile
-  function selectUser(name) {
-    const tx = db.transaction('users', 'readonly');
-    tx.objectStore('users').get(name).onsuccess = e => {
-      user = e.target.result;
-      updateUserInfoDisplay();
-      clearCart();
-      showSection('shop');
-    };
-  }
-
-  // Update header user info & cart summary
-  function updateUserInfoDisplay() {
-    const info = document.getElementById('user-info');
-    if (user) {
-      info.textContent = `${user.name} — ${user.currency}${user.balance.toFixed(2)}`;
-    } else {
-      info.textContent = 'No Profile Selected';
-    }
-    updateCartSummary();
-  }
-
-  // === PRODUCT MANAGEMENT ===
-
-  function loadProducts() {
-    const tx = db.transaction('products', 'readonly');
-    const store = tx.objectStore('products');
-    store.getAll().onsuccess = e => {
-      products = e.target.result || [];
-      renderProductsTable();
-      renderStoreProducts();
-    };
-  }
-
-  // Render products in admin table
-  function renderProductsTable() {
-    const tbody = document.querySelector('#products-table tbody');
-    tbody.innerHTML = '';
-    products.forEach(p => {
-      const tr = document.createElement('tr');
-      tr.innerHTML = `
-        <td>${p.name}</td>
-        <td>${p.description}</td>
-        <td>${p.category}</td>
-        <td>${p.frequency || ''}</td>
-        <td>${p.price.toFixed(2)}</td>
-        <td><a href="${p.url}" target="_blank" rel="noopener noreferrer">${p.url ? 'Link' : ''}</a></td>
-        <td><button class="action-btn edit-btn">Edit</button></td>
-        <td><button class="action-btn delete-btn">Delete</button></td>
-      `;
-
-      tr.querySelector('.edit-btn').onclick = () => startEditProduct(p.name);
-      tr.querySelector('.delete-btn').onclick = () => deleteProduct(p.name);
-
-      tbody.appendChild(tr);
-    });
-  }
-
-  // Start editing a product
-  function startEditProduct(name) {
-    const p = products.find(x => x.name === name);
-    if (!p) return;
-    document.getElementById('prod-name').value = p.name;
-    document.getElementById('prod-desc').value = p.description;
-    document.getElementById('prod-cat').value = p.category;
-    document.getElementById('prod-freq').value = p.frequency || '';
-    document.getElementById('prod-price').value = p.price;
-    document.getElementById('prod-url').value = p.url || '';
-    document.getElementById('prod-original-name').value = p.name;
-
-    document.getElementById('product-save-btn').textContent = 'Save Changes';
-    document.getElementById('product-cancel-btn').style.display = 'inline-block';
-  }
-
-  // Cancel editing product
-  function cancelEditProduct() {
-    document.getElementById('product-form').reset();
-    document.getElementById('prod-original-name').value = '';
-    document.getElementById('product-save-btn').textContent = 'Add Product';
-    document.getElementById('product-cancel-btn').style.display = 'none';
-  }
-
-  // Save product (add new or update existing)
-  function saveProduct() {
-    const name = document.getElementById('prod-name').value.trim();
-    const desc = document.getElementById('prod-desc').value.trim();
-    const cat = document.getElementById('prod-cat').value.trim();
-    const freq = document.getElementById('prod-freq').value.trim();
-    const priceRaw = document.getElementById('prod-price').value.trim();
-    const price = parseFloat(priceRaw);
-    const url = document.getElementById('prod-url').value.trim();
-    const originalName = document.getElementById('prod-original-name').value;
-
-    if (!name || !desc || !cat || isNaN(price) || price < 0) {
-      alert('Please fill in valid product details.');
-      return;
-    }
-
-    // If updating and name changed, delete old record
-    const tx = db.transaction('products', 'readwrite');
-    const store = tx.objectStore('products');
-    if (originalName && originalName !== name) {
-      store.delete(originalName);
-    }
-    store.put({ name, description: desc, category: cat, frequency: freq, price, url }).onsuccess = () => {
-      loadProducts();
-      cancelEditProduct();
-    };
-  }
-
-  // Delete product by name
-  function deleteProduct(name) {
-    const tx = db.transaction('products', 'readwrite');
-    tx.objectStore('products').delete(name).onsuccess = () => loadProducts();
-  }
-
-  // Bulk add products from JSON textarea
-  function addBulkProducts() {
-    const bulkText = document.getElementById('bulk-input').value.trim();
-    if (!bulkText) return alert('Enter JSON array of products');
-    let bulkArray;
-    try {
-      bulkArray = JSON.parse(bulkText);
-    } catch {
-      return alert('Invalid JSON');
-    }
-    if (!Array.isArray(bulkArray)) return alert('JSON must be an array');
-
-    const tx = db.transaction('products', 'readwrite');
-    const store = tx.objectStore('products');
-    bulkArray.forEach(p => {
-      if (p.name && p.description && p.category && typeof p.price === 'number') {
-        store.put({
-          name: p.name,
-          description: p.description,
-          category: p.category,
-          frequency: p.frequency || '',
-          price: p.price,
-          url: p.url || ''
-        });
-      }
-    });
-    tx.oncomplete = () => {
-      loadProducts();
-      document.getElementById('bulk-input').value = '';
-    };
-  }
-
-  // === STORE (SHOP) ===
-
-  function renderStoreProducts() {
-    const container = document.getElementById('product-list');
-    container.innerHTML = '';
-    if (!products.length) {
-      container.textContent = 'No products available';
-      return;
-    }
-    products.forEach(p => {
-      const card = document.createElement('div');
-      card.className = 'card';
-      card.innerHTML = `
-        <img src="${p.url || 'https://via.placeholder.com/150?text=No+Image'}" alt="${p.name}" />
-        <h3>${p.name}</h3>
-        <p>${p.description}</p>
-        <p><strong>${p.price.toFixed(2)}</strong></p>
-        <button onclick="addToCart('${p.name}')">Add to Cart</button>
-      `;
-      container.appendChild(card);
-    });
-  }
-
-  // === CART ===
-
-  function addToCart(name) {
-    if (!user) return alert('Please select a user profile first!');
-    const prod = products.find(p => p.name === name);
-    if (!prod) return;
-    const existing = cart.find(i => i.name === name);
-    if (existing) existing.quantity++;
-    else cart.push({...prod, quantity: 1});
-    updateCartSummary();
-  }
-
-  function updateCartSummary() {
-    const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
-    const count = cart.reduce((sum, i) => sum + i.quantity, 0);
-    const currency = user ? user.currency : '$';
-    document.getElementById('cart-summary').innerHTML = 
-      `Cart: ${count} item${count !== 1 ? 's' : ''} - ${currency}${total.toFixed(2)} <button onclick="showSection('checkout')">Checkout</button>`;
-    renderCartItems();
-  }
-
-  function renderCartItems() {
-    const container = document.getElementById('cart-items');
-    container.innerHTML = '';
-    if (!cart.length) {
-      container.textContent = 'Your cart is empty.';
-      document.getElementById('cart-subtotal').textContent = '';
-      return;
-    }
-    cart.forEach(item => {
-      const div = document.createElement('div');
-      div.style.marginBottom = '0.5em';
-      div.innerHTML = `
-        ${item.name} x ${item.quantity} = ${user.currency}${(item.price * item.quantity).toFixed(2)} 
-        <button class="action-btn delete-btn" onclick="removeFromCart('${item.name}')">Remove</button>
-      `;
-      container.appendChild(div);
-    });
-    const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
-    document.getElementById('cart-subtotal').innerHTML = `<strong>Subtotal: ${user.currency}${total.toFixed(2)}</strong>`;
-  }
-
-  function removeFromCart(name) {
-    const index = cart.findIndex(i => i.name === name);
-    if (index !== -1) {
-      cart.splice(index, 1);
-      updateCartSummary();
-    }
-  }
-
-  function clearCart() {
-    cart = [];
-    updateCartSummary();
-  }
-
-  // === CHECKOUT ===
-
-  function showCheckoutItems() {
-    const container = document.getElementById('checkout-list');
-    container.innerHTML = '';
-    if (!cart.length) {
-      container.textContent = 'No items in the cart.';
-      return;
-    }
-    cart.forEach(i => {
-      const div = document.createElement('div');
-      div.textContent = `${i.name} x ${i.quantity} = ${user.currency}${(i.price * i.quantity).toFixed(2)}`;
-      container.appendChild(div);
-    });
-  }
-
-  function completeCheckout() {
-    if (!user) {
-      alert('Select a user profile first!');
-      showSection('profile');
-      return;
-    }
-    const total = cart.reduce((sum, i) => sum + i.price * i.quantity, 0);
-    if (total === 0) {
-      alert('Cart is empty!');
-      return;
-    }
-    if (user.balance < total) {
-      document.getElementById('checkout-message').textContent = 'Insufficient funds!';
-      return;
-    }
-
-    user.balance -= total;
-    // Update user in DB
-    const tx = db.transaction('users', 'readwrite');
-    tx.objectStore('users').put(user).onsuccess = () => {
-      document.getElementById('checkout-message').textContent = 'Purchase complete!';
-      document.getElementById('checkout-list').innerHTML = '';
-      cart.forEach(i => {
-        const div = document.createElement('div');
-        div.textContent = `${i.name} x ${i.quantity} = ${user.currency}${(i.price * i.quantity).toFixed(2)}`;
-        document.getElementById('checkout-list').appendChild(div);
-      });
-      document.getElementById('checkout-list').innerHTML += `<p><strong>New Balance: ${user.currency}${user.balance.toFixed(2)}</strong></p>`;
-      clearCart();
-      loadUsers(); // reload to update balance display in table
-      updateUserInfoDisplay();
-    };
-  }
-
-</script>
 </body>
 </html>

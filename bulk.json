@@ -1,0 +1,248 @@
+[
+{"name":"Arrow","description":"Arrows (20)","category":"Ammunition","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Club","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Dagger","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Greatclub","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Handaxe","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Javelin","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Light hammer","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Mace","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Quarterstaff","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Sickle","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Spear","description":"","category":"Simple Melee Weapons","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Crossbow, light","description":"","category":"Simple Ranged Weapons","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Dart","description":"","category":"Simple Ranged Weapons","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"Shortbow","description":"","category":"Simple Ranged Weapons","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Sling","description":"","category":"Simple Ranged Weapons","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Battleaxe","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Flail","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Glaive","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Greataxe","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Greatsword","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Halberd","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Lance","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Longsword","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Maul","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Morningstar","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Pike","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Rapier","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Scimitar","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Shortsword","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Trident","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"War pick","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Warhammer","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Whip","description":"","category":"Martial Melee Weapons","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Blowgun","description":"","category":"Martial Ranged Weapons","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Crossbow, hand","description":"","category":"Martial Ranged Weapons","frequency":"Common","price":"75","store":"","url":""}
+,{"name":"Crossbow, heavy","description":"","category":"Martial Ranged Weapons","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Longbow","description":"","category":"Martial Ranged Weapons","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Net","description":"","category":"Martial Ranged Weapons","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Padded","description":"","category":"Light Armor","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Leather","description":"","category":"Light Armor","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Studded leather","description":"","category":"Light Armor","frequency":"Common","price":"45","store":"","url":""}
+,{"name":"Hide","description":"","category":"Medium Armor","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Chain shirt","description":"","category":"Medium Armor","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Scale mail","description":"","category":"Medium Armor","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Breastplate","description":"","category":"Medium Armor","frequency":"Common","price":"400","store":"","url":""}
+,{"name":"Half plate","description":"","category":"Medium Armor","frequency":"Common","price":"750","store":"","url":""}
+,{"name":"Ring mail","description":"","category":"Heavy Armor","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Chain mail","description":"","category":"Heavy Armor","frequency":"Common","price":"75","store":"","url":""}
+,{"name":"Splint","description":"","category":"Heavy Armor","frequency":"Common","price":"200","store":"","url":""}
+,{"name":"Plate","description":"","category":"Heavy Armor","frequency":"Common","price":"1500","store":"","url":""}
+,{"name":"Shield","description":"","category":"Shield","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Abacus","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Acid (vial)","description":"","category":"Gear","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Alchemist’s fire (flask)","description":"","category":"Gear","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Arrows (20)","description":"","category":"Ammunition","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Blowgun needles (50)","description":"","category":"Ammunition","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Crossbow bolts (20)","description":"","category":"Ammunition","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Sling bullets (20)","description":"","category":"Ammunition","frequency":"Common","price":"0.04","store":"","url":""}
+,{"name":"Antitoxin (vial)","description":"","category":"Gear","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Crystal","description":"","category":"Arcane focus","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Orb","description":"","category":"Arcane focus","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Rod","description":"","category":"Arcane focus","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Staff","description":"","category":"Arcane focus","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Wand","description":"","category":"Arcane focus","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Backpack","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Ball bearings (bag of 1,000)","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Barrel","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Basket","description":"","category":"Gear","frequency":"Common","price":"0.4","store":"","url":""}
+,{"name":"Bedroll","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Bell","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Blanket","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Block and tackle","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Book","description":"","category":"Gear","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Bottle, glass","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Bucket","description":"","category":"Gear","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"Caltrops (bag of 20)","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Candle","description":"","category":"Gear","frequency":"Common","price":"0.01","store":"","url":""}
+,{"name":"Case, crossbow bolt","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Case, map or scroll","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Chain (10 feet)","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Chalk (1 piece)","description":"","category":"Gear","frequency":"Common","price":"0.01","store":"","url":""}
+,{"name":"Chest","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Climber’s kit","description":"","category":"Gear","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Clothes, common","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Clothes, costume","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Clothes, fine","description":"","category":"Gear","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Clothes, traveler’s","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Component pouch","description":"","category":"Gear","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Crowbar","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Sprig of mistletoe","description":"","category":"Druidic focus","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Totem","description":"","category":"Druidic focus","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Wooden staff","description":"","category":"Druidic focus","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Yew wand","description":"","category":"Druidic focus","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Fishing tackle","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Flask or tankard","description":"","category":"Gear","frequency":"Common","price":"0.02","store":"","url":""}
+,{"name":"Grappling hook","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Hammer","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Hammer, sledge","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Healer’s kit","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Amulet","description":"","category":"Holy symbol","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Emblem","description":"","category":"Holy symbol","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Reliquary","description":"","category":"Holy symbol","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Holy water (flask)","description":"","category":"Gear","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Hourglass","description":"","category":"Gear","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Hunting trap","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Ink (1 ounce bottle)","description":"","category":"Gear","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Ink pen","description":"","category":"Gear","frequency":"Common","price":"0.02","store":"","url":""}
+,{"name":"Jug or pitcher","description":"","category":"Gear","frequency":"Common","price":"0.02","store":"","url":""}
+,{"name":"Ladder (10-foot)","description":"","category":"Gear","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Lamp","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Lantern, bullseye","description":"","category":"Gear","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Lantern, hooded 5","description":"","category":"Gear","frequency":"Common","price":"","store":"","url":""}
+,{"name":"Lock","description":"","category":"Gear","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Magnifying glass","description":"","category":"Gear","frequency":"Common","price":"100","store":"","url":""}
+,{"name":"Manacles","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Mess kit","description":"","category":"Gear","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Mirror, steel","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Oil (flask)","description":"","category":"Gear","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Paper (one sheet)","description":"","category":"Gear","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Parchment (one sheet)","description":"","category":"Gear","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Perfume (vial)","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Pick, miner’s","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Piton","description":"","category":"Gear","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"Poison, basic (vial)","description":"","category":"Gear","frequency":"Common","price":"100","store":"","url":""}
+,{"name":"Pole (10-foot)","description":"","category":"Gear","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"Pot, iron","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Potion of healing","description":"","category":"Gear","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Pouch","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Quiver","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Ram, portable","description":"","category":"Gear","frequency":"Common","price":"4","store":"","url":""}
+,{"name":"Rations (1 day)","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Robes","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Rope, hempen (50 feet)","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Rope, silk (50 feet)","description":"","category":"Gear","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Sack","description":"","category":"Gear","frequency":"Common","price":"0.01","store":"","url":""}
+,{"name":"Scale, merchant’s","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Sealing wax","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Shovel","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Signal whistle","description":"","category":"Gear","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"Signet ring","description":"","category":"Gear","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Soap","description":"","category":"Gear","frequency":"Common","price":"0.02","store":"","url":""}
+,{"name":"Spellbook","description":"","category":"Gear","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Spikes, iron (10)","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Spyglass","description":"","category":"Gear","frequency":"Common","price":"1,000","store":"","url":""}
+,{"name":"Tent, two-person","description":"","category":"Gear","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Tinderbox","description":"","category":"Gear","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Torch","description":"","category":"Gear","frequency":"Common","price":"0.01","store":"","url":""}
+,{"name":"Vial","description":"","category":"Gear","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Waterskin","description":"","category":"Gear","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Whetstone","description":"","category":"Gear","frequency":"Common","price":"0.01","store":"","url":""}
+,{"name":"Alchemist’s supplies","description":"","category":"Tools","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Brewer’s supplies","description":"","category":"Tools","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Calligrapher's supplies","description":"","category":"Tools","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Carpenter’s tools","description":"","category":"Tools","frequency":"Common","price":"8","store":"","url":""}
+,{"name":"Cartographer’s tools","description":"","category":"Tools","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Cobbler’s tools","description":"","category":"Tools","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Cook’s utensils","description":"","category":"Tools","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Glassblower’s tools","description":"","category":"Tools","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Jeweler’s tools","description":"","category":"Tools","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Leatherworker’s tools","description":"","category":"Tools","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Mason’s tools","description":"","category":"Tools","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Painter’s supplies","description":"","category":"Tools","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Potter’s tools","description":"","category":"Tools","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Smith’s tools","description":"","category":"Tools","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Tinker’s tools","description":"","category":"Tools","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Weaver’s tools","description":"","category":"Tools","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Woodcarver’s tools","description":"","category":"Tools","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"Disguise kit","description":"","category":"Tools","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Forgery kit","description":"","category":"Tools","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Dice set","description":"","category":"Tools","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Playing card set","description":"","category":"Tools","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Herbalism kit","description":"","category":"Tools","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Bagpipes","description":"","category":"Tools","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Drum","description":"","category":"Tools","frequency":"Common","price":"6","store":"","url":""}
+,{"name":"Dulcimer","description":"","category":"Tools","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Flute","description":"","category":"Tools","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Lute","description":"","category":"Tools","frequency":"Common","price":"35","store":"","url":""}
+,{"name":"Lyre","description":"","category":"Tools","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Horn","description":"","category":"Tools","frequency":"Common","price":"3","store":"","url":""}
+,{"name":"Pan flute","description":"","category":"Tools","frequency":"Common","price":"12","store":"","url":""}
+,{"name":"Shawm","description":"","category":"Tools","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Viol","description":"","category":"Tools","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Navigator’s tools","description":"","category":"Tools","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Poisoner’s kit","description":"","category":"Tools","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Thieves’ tools","description":"","category":"Tools","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Camel","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Donkey or mule","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"8","store":"","url":""}
+,{"name":"Elephant","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"200","store":"","url":""}
+,{"name":"Horse, draft","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Horse, riding","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"75","store":"","url":""}
+,{"name":"Mastiff","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"25","store":"","url":""}
+,{"name":"Pony","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"30","store":"","url":""}
+,{"name":"Warhorse","description":"","category":"Mounts and Other Animals","frequency":"Common","price":"400","store":"","url":""}
+,{"name":"Barding","description":"","category":"Tack","frequency":"Common","price":"×4","store":"","url":""}
+,{"name":"Bit and bridle","description":"","category":"Tack","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Carriage","description":"","category":"Vehicles","frequency":"Common","price":"100","store":"","url":""}
+,{"name":"Cart","description":"","category":"Vehicles","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"Chariot","description":"","category":"Vehicles","frequency":"Common","price":"250","store":"","url":""}
+,{"name":"Feed (per day)","description":"","category":"Tack","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"Exotic, saddle","description":"","category":"Tack","frequency":"Common","price":"60","store":"","url":""}
+,{"name":"Military, saddle","description":"","category":"Tack","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Pack, saddle","description":"","category":"Tack","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"Riding, saddle","description":"","category":"Tack","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Saddlebags","description":"","category":"Tack","frequency":"Common","price":"4","store":"","url":""}
+,{"name":"Sled","description":"","category":"Tack","frequency":"Common","price":"20","store":"","url":""}
+,{"name":"Stabling (per day)","description":"","category":"Services","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Wagon","description":"","category":"Vehicles","frequency":"Common","price":"35","store":"","url":""}
+,{"name":"Galley","description":"","category":"Vehicles","frequency":"Common","price":"30000","store":"","url":""}
+,{"name":"Keelboat","description":"","category":"Vehicles","frequency":"Common","price":"3000","store":"","url":""}
+,{"name":"Longship","description":"","category":"Vehicles","frequency":"Common","price":"10000","store":"","url":""}
+,{"name":"Rowboat","description":"","category":"Vehicles","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"Sailing ship","description":"","category":"Vehicles","frequency":"Common","price":"10000","store":"","url":""}
+,{"name":"Warship","description":"","category":"Vehicles","frequency":"Common","price":"25000","store":"","url":""}
+,{"name":"1 lb. of wheat","description":"","category":"Trade Goods","frequency":"Common","price":"0.01","store":"","url":""}
+,{"name":"1 lb. of flour or one chicken","description":"","category":"Trade Goods","frequency":"Common","price":"0.02","store":"","url":""}
+,{"name":"1 lb. of salt","description":"","category":"Trade Goods","frequency":"Common","price":"0.05","store":"","url":""}
+,{"name":"1 lb. of iron or 1 sq. yd. of canvas","description":"","category":"Trade Goods","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"1 lb. of copper or 1 sq. yd. of cotton cloth","description":"","category":"Trade Goods","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"1 lb. of ginger or one goat","description":"","category":"Trade Goods","frequency":"Common","price":"1","store":"","url":""}
+,{"name":"1 lb. of cinnamon or pepper, or one sheep","description":"","category":"Trade Goods","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"1 lb. of cloves or one pig","description":"","category":"Trade Goods","frequency":"Common","price":"3","store":"","url":""}
+,{"name":"1 lb. of silver or 1 sq. yd. of linen","description":"","category":"Trade Goods","frequency":"Common","price":"5","store":"","url":""}
+,{"name":"1 sq. yd. of silk or one cow","description":"","category":"Trade Goods","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"1 lb. of saffron or one ox","description":"","category":"Trade Goods","frequency":"Common","price":"15","store":"","url":""}
+,{"name":"1 lb. of gold","description":"","category":"Trade Goods","frequency":"Common","price":"50","store":"","url":""}
+,{"name":"1 lb. of platinum","description":"","category":"Trade Goods","frequency":"Common","price":"500","store":"","url":""}
+,{"name":"Ale, Gallon","description":"","category":"Food","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Ale, Mug","description":"","category":"Food","frequency":"Common","price":"0.04","store":"","url":""}
+,{"name":"Banquet (per person)","description":"","category":"Food","frequency":"Common","price":"10","store":"","url":""}
+,{"name":"Bread, loaf","description":"","category":"Food","frequency":"Common","price":"0.02","store":"","url":""}
+,{"name":"Cheese, hunk","description":"","category":"Food","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Inn stay (per day), Squalid","description":"","category":"Services","frequency":"Common","price":"0.07","store":"","url":""}
+,{"name":"Inn stay (per day), Poor","description":"","category":"Services","frequency":"Common","price":"0.1","store":"","url":""}
+,{"name":"Inn stay (per day), Modest","description":"","category":"Services","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Inn stay (per day), Comfortable","description":"","category":"Services","frequency":"Common","price":"0.8","store":"","url":""}
+,{"name":"Inn stay (per day), Wealthy","description":"","category":"Services","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Inn stay (per day), Aristocratic","description":"","category":"Services","frequency":"Common","price":"4","store":"","url":""}
+,{"name":"Meals (per day), Squalid","description":"","category":"Services","frequency":"Common","price":"0.03","store":"","url":""}
+,{"name":"Meals (per day), Poor","description":"","category":"Services","frequency":"Common","price":"0.06","store":"","url":""}
+,{"name":"Meals (per day), Modest","description":"","category":"Services","frequency":"Common","price":"0.3","store":"","url":""}
+,{"name":"Meals (per day), Comfortable","description":"","category":"Services","frequency":"Common","price":"0.5","store":"","url":""}
+,{"name":"Meals (per day), Wealthy","description":"","category":"Services","frequency":"Common","price":"0.8","store":"","url":""}
+,{"name":"Meals (per day), Aristocratic","description":"","category":"Services","frequency":"Common","price":"2","store":"","url":""}
+,{"name":"Meat, chunk","description":"","category":"Food","frequency":"Common","price":"0.3","store":"","url":""}
+,{"name":"Common (pitcher)","description":"","category":"Food","frequency":"Common","price":"0.2","store":"","url":""}
+,{"name":"Fine (bottle)","description":"","category":"Food","frequency":"Common","price":"10","store":"","url":""}
+]
